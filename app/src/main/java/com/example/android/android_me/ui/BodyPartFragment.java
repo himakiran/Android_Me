@@ -18,6 +18,7 @@ package com.example.android.android_me.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,16 @@ import android.widget.ImageView;
 import com.example.android.android_me.R;
 import com.example.android.android_me.data.AndroidImageAssets;
 
+import java.util.List;
+
 public class BodyPartFragment extends Fragment {
+
+    // tag for logging
+    private static final String TAG = "BodyPartFragment";
+
+    private List<Integer> mImageIds;
+    private int mImageIndex;
+
 
     // TODO (1) Create a setter method and class variable to set and store of a list of image resources
 
@@ -57,8 +67,24 @@ public class BodyPartFragment extends Fragment {
         // TODO (3) If a list of image ids exists, set the image resource to the correct item in that list
         // Otherwise, create a Log statement that indicates that the list was not found
 
+        if(mImageIds != null){
+            imageView.setImageResource(mImageIds.get(mImageIndex));
+        }
+        else{
+            Log.v(TAG,"This fragment has a null list of image ids");
+        }
+
+
         // Return the rootView
         return rootView;
+    }
+
+    public void setmImageIds(List<Integer> imageIds){
+        mImageIds = imageIds;
+    }
+
+    public void setmImageIndex(int imageIndex){
+        mImageIndex = imageIndex;
     }
 
 }
